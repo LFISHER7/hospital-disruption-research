@@ -70,6 +70,21 @@ study = StudyDefinition(
             "index_date",
         ),
     ),
+
+    # ethnicity in 6 categories
+    ethnicity = patients.with_these_clinical_events(
+        codes_ethnicity,
+        returning="category",
+        find_last_match_in_period = True,
+        include_date_of_match=False,
+        return_expectations={
+            "category": {"ratios": {"1": 0.2, "2":0.2, "3":0.2, "4":0.2, "5":0.2}},
+            "incidence": 0.75,
+        },
+    ),
+
+
+
     CVD=patients.admitted_to_hospital(
         with_these_diagnoses=cvd_codelist,
         between=["index_date", "index_date + 6 days"],
