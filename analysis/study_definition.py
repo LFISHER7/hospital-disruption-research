@@ -71,6 +71,13 @@ study = StudyDefinition(
         ),
     ),
 
+        sex=patients.sex(
+        return_expectations={
+            "rate": "universal",
+            "category": {"ratios": {"M": 0.49, "F": 0.51}},
+        }
+    ),
+
     # ethnicity in 6 categories
     ethnicity = patients.with_these_clinical_events(
         codes_ethnicity,
