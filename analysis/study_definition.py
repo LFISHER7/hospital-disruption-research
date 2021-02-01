@@ -134,18 +134,21 @@ study = StudyDefinition(
 
 measures = [
     Measure(
-        id="CVD_rate", numerator="CVD", denominator="population", group_by=["AgeGroup"],
+        id="CVD_rate",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "sex", "ethnicity", "imd"],
     ),
     Measure(
         id="respiratory_disease_rate",
         numerator="respiratory_disease",
         denominator="population",
-        group_by=["AgeGroup"],
+        group_by=["AgeGroup", "sex", "ethnicity", "imd"],
     ),
     Measure(
         id="cancer_rate",
         numerator="cancer",
         denominator="population",
-        group_by=["AgeGroup"],
+        group_by=["AgeGroup", "sex", "ethnicity", "imd"],
     ),
 ]
