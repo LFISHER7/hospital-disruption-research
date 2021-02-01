@@ -66,34 +66,29 @@ study = StudyDefinition(
                 }
             },
         },
-        age=patients.age_as_of(
-            "index_date",
-        ),
+        age=patients.age_as_of("index_date",),
     ),
-
-        sex=patients.sex(
+    sex=patients.sex(
         return_expectations={
             "rate": "universal",
             "category": {"ratios": {"M": 0.49, "F": 0.51}},
         }
     ),
-
     # ethnicity in 6 categories
-    ethnicity = patients.with_these_clinical_events(
-        codes_ethnicity,
+    ethnicity=patients.with_these_clinical_events(
+        ethnicity_codes,
         returning="category",
-        find_last_match_in_period = True,
+        find_last_match_in_period=True,
         include_date_of_match=False,
         return_expectations={
-            "category": {"ratios": {"1": 0.2, "2":0.2, "3":0.2, "4":0.2, "5":0.2}},
+            "category": {"ratios": {"1": 0.2, "2": 0.2, "3": 0.2, "4": 0.2, "5": 0.2}},
             "incidence": 0.75,
         },
     ),
-
     # IMD - quintile
     imd=patients.categorised_as(
         {
-            "0": "DEFAULT", 
+            "0": "DEFAULT",
             "1": """index_of_multiple_deprivation >=1 AND index_of_multiple_deprivation < 32844*1/5""",
             "2": """index_of_multiple_deprivation >= 32844*1/5 AND index_of_multiple_deprivation < 32844*2/5""",
             "3": """index_of_multiple_deprivation >= 32844*2/5 AND index_of_multiple_deprivation < 32844*3/5""",
@@ -119,9 +114,6 @@ study = StudyDefinition(
             },
         },
     ),
-
-
-
     CVD=patients.admitted_to_hospital(
         with_these_diagnoses=cvd_codelist,
         between=["index_date", "index_date + 6 days"],
@@ -142,10 +134,7 @@ study = StudyDefinition(
 
 measures = [
     Measure(
-        id="CVD_rate",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup"],
+        id="CVD_rate", numerator="CVD", denominator="population", group_by=["AgeGroup"],
     ),
     Measure(
         id="respiratory_disease_rate",

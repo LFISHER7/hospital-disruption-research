@@ -3,6 +3,14 @@ from cohortextractor import (
     codelist_from_csv,
 )
 
+ethnicity_codes = codelist_from_csv(
+    "codelists/opensafely-ethnicity.csv",
+    system="ctv3",
+    column="Code",
+    category_column="Grouping_6",
+)
+
+
 # https://codelists.opensafely.org/codelist/opensafely/icd-10-chapter-ix/4868c7af/
 cvd_codelist = codelist_from_csv(
     "codelists/opensafely-icd-10-chapter-ix.csv",
@@ -25,3 +33,5 @@ cancer_codelist = codelist_from_csv(
     system="icd10",
     column="code",
 )
+
+
